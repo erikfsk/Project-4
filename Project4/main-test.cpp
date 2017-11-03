@@ -71,9 +71,6 @@ void MetropolisSampling(int NSpins, int MCcycles, double Temperature, vec &Expec
   // Set up the uniform distribution for x \in [[0, 1]
   std::uniform_real_distribution<double> RandomNumberGenerator(0.0,1.0);
   // Initialize the lattice spin values
-
-
-
   mat SpinMatrix = zeros<mat>(NSpins,NSpins);
   //    initialize energy and magnetization 
   double Energy = 0.;     double MagneticMoment = 0.;
@@ -81,35 +78,26 @@ void MetropolisSampling(int NSpins, int MCcycles, double Temperature, vec &Expec
   InitializeLattice(NSpins, SpinMatrix, Energy, MagneticMoment);
   // setup array for possible energy changes
   vec EnergyDifference = zeros<mat>(17); 
-
-
-
   for( int de =-8; de <= 8; de+=4) EnergyDifference(de+8) = exp(-de/Temperature);
   // Start Monte Carlo cycles
-    for (int cycles = 1; cycles <= MCcycles; cycles++){
-      // The sweep over the lattice, looping over all spin sites
-      for(int x =0; x < NSpins; x++) {
-        for (int y= 0; y < NSpins; y++){
-
-
-          int ix = (int) (RandomNumberGenerator(gen)*(double)NSpins);
-          int iy = (int) (RandomNumberGenerator(gen)*(double)NSpins);
-          int deltaE =  2*SpinMatrix(ix,iy)*
-            (SpinMatrix(ix,PeriodicBoundary(iy,NSpins,-1))+
-             SpinMatrix(PeriodicBoundary(ix,NSpins,-1),iy) +
-             SpinMatrix(ix,PeriodicBoundary(iy,NSpins,1)) +
-             SpinMatrix(PeriodicBoundary(ix,NSpins,1),iy));
-          if ( RandomNumberGenerator(gen) <= EnergyDifference(deltaE+8) ) {
-            SpinMatrix(ix,iy) *= -1.0;  // flip one spin and accept new spin config
-            MagneticMoment += (double) 2*SpinMatrix(ix,iy);
-            Energy += (double) deltaE;
-          }
-
-          
-        }
+  for (int cycles = 1; cycles <= MCcycles; cycles++){
+    // The sweep over the lattice, looping over all spin sites
+    for(int x =0; x < NSpins; x++) {
+      for (int y= 0; y < NSpins; y++){
+    int ix = (int) (RandomNumberGenerator(gen)*(double)NSpins);
+    int iy = (int) (RandomNumberGenerator(gen)*(double)NSpins);
+    int deltaE =  2*SpinMatrix(ix,iy)*
+      (SpinMatrix(ix,PeriodicBoundary(iy,NSpins,-1))+
+       SpinMatrix(PeriodicBoundary(ix,NSpins,-1),iy) +
+       SpinMatrix(ix,PeriodicBoundary(iy,NSpins,1)) +
+       SpinMatrix(PeriodicBoundary(ix,NSpins,1),iy));
+    if ( RandomNumberGenerator(gen) <= EnergyDifference(deltaE+8) ) {
+      SpinMatrix(ix,iy) *= -1.0;  // flip one spin and accept new spin config
+      MagneticMoment += (double) 2*SpinMatrix(ix,iy);
+      Energy += (double) deltaE;
+    }
       }
-
-
+    }
     // update expectation values  for local node
     ExpectationValues(0) += Energy;    ExpectationValues(1) += Energy*Energy;
     ExpectationValues(2) += MagneticMoment;    
@@ -117,10 +105,6 @@ void MetropolisSampling(int NSpins, int MCcycles, double Temperature, vec &Expec
     ExpectationValues(4) += fabs(MagneticMoment);
   }
 } // end of Metropolis sampling over spins
-
-
-
-
 
 // function to initialise energy, spin matrix and magnetization
 void InitializeLattice(int NSpins, mat &SpinMatrix,  double& Energy, double& MagneticMoment)
@@ -144,9 +128,6 @@ void InitializeLattice(int NSpins, mat &SpinMatrix,  double& Energy, double& Mag
 
 
 
-
-
-
 void WriteResultstoFile(int NSpins, int MCcycles, double temperature, vec ExpectationValues)
 {
   double norm = 1.0/((double) (MCcycles));  // divided by  number of cycles 
@@ -166,3 +147,21 @@ void WriteResultstoFile(int NSpins, int MCcycles, double temperature, vec Expect
   ofile << setw(15) << setprecision(8) << Mvariance/temperature;
   ofile << setw(15) << setprecision(8) << Mabs_ExpectationValues/NSpins/NSpins << endl;
 } // end output function
+
+
+
+
+int write_to_file(string datafil,mat f_tilde,int n,double h)
+{
+    ofstream outFile;
+    outFile.open(datafil, std::ios::out);
+    if (! outFile.is_open()) {
+        cout << "Problem opening file." << endl;
+        exit(1);
+    }
+    for (int i = 0; i < n; i++) {
+        outFile << (i+1)*h << " " <<  f_tilde[i] << endl;
+    }
+    outFile.close();
+    return 0;
+}

@@ -1,3 +1,4 @@
+\subsection{Analytic 2x2}
 
 
 
@@ -6,19 +7,50 @@
 
 
 
+\begin{center}
+\label{tab:states-2x2}
+\captionof{table}{This shows the different microstates that is possible for a 2x2 spinmatrix. It also states the energy and magnetic moment for each microstate.}
+\begin{tabularx}{\textwidth}{c c c X c c c}
+    \hline 
+    \hline 
+        State & Energy & Magnetic moment && State & Energy & Magnetic moment \\ 
+    \hline
+        \tilstand{1}{1}{1}{1} & -8J & 4 && \tilstand{0}{0}{0}{0} & -8J & -4 \\ \\
+        
+        \tilstand{0}{1}{1}{1} & 0J & 2 && \tilstand{1}{0}{0}{0} & 0J & -2 \\ \\
+        \tilstand{1}{0}{1}{1} & 0J & 2 && \tilstand{0}{1}{0}{0} & 0J & -2 \\ \\
+        \tilstand{1}{1}{0}{1} & 0J & 2 && \tilstand{0}{0}{1}{0} & 0J & -2 \\ \\
+        \tilstand{1}{1}{1}{0} & 0J & 2 && \tilstand{0}{0}{0}{1} & 0J & -2 \\ \\
+
+        \tilstand{0}{0}{1}{1} & 0J & 0 && \tilstand{1}{1}{0}{0} & 0J & 0 \\ \\ 
+        \tilstand{0}{1}{0}{1} & 0J & 0 && \tilstand{1}{0}{1}{0} & 0J & 0 \\ \\
+        \tilstand{1}{0}{0}{1} & 8J & 0 && \tilstand{0}{1}{1}{0} & 8J & 0 \\ \\
+    \hline
+\end{tabularx}
+\end{center}
 
 
 
-\subsection{Earth-Sun system}
+\begin{center}
+\label{tab:states-2x2-summary}
+\captionof{table}{The table shows a summary from table \ref{tab:states-2x2}. }
+\begin{tabularx}{\textwidth}{c X c X c X c}
+    \hline 
+    \hline 
+        Number of $\uparrow$ && Multiplicity && Energy && Magnetic moment \\ 
+    \hline
+        4   &&      1      &&      -8J     &&       4       \\  
+        3   &&      4      &&      0J      &&       2       \\
+        2   &&      2      &&      8J      &&       0       \\
+        2   &&      4      &&      0J      &&       0       \\
+        1   &&      4      &&      0J      &&       -2      \\
+        0   &&      1      &&      -8J     &&       -4      \\
+    \hline
+\end{tabularx}
+\end{center}
 
-
-
-
-
-
-
-
-\subsubsection{Stability}
+\pagebreak
+\subsection{example}
 
 \begin{figure}[H]
     \centering
@@ -36,25 +68,3 @@
     \caption{a) shows the orbit of earth around the sun. The intial velocity is set to $2\pi$ in y direction and the start position to 1 au in x direction. b) shows how the error develops. The intial values should give a perfect circular motion. So the error is calculated by $r_i - r_{0}$. It is apparent that the Verlet-Velocity method is a better approximation. This simulation was with 1000 points with the end time of 1 year. Both simulations was produced by \href{https://github.com/erikfsk/Project-3/tree/master/Project3/earth-sun-standard-results}{\textcolor{blue}{plot\_earth\_sun.py}}}
     \label{fig:earth-sun}
 \end{figure}
-
-
-\begin{center}
-\label{table:euler-verlet-time}
-\captionof{table}{Time table for the different algorithms. The algorithms use nearly the same time. This is not a shocker since the number of FLOPs for the algorithms are similar, see section (\ref{sec:flops}). Note: this is only the result from one test, but several was done. Both algorithms were very close and it seems to be random which is fastest.
-\\}
-\begin{tabularx}{\textwidth}{c c c c c c c c}
-    \hline 
-    \hline 
-    n & Forward-Euler & Verlet-Velocity &  fastest &&&& $\frac{slowest}{fastest}$\\ 
-    \hline
-    10 & 0.000136 & 0.000148 & Euler &&&&   1.08823529412   \\ 
-    100 & 0.000208 & 0.000179 & Verlet &&&&   1.16201117318   \\ 
-    1000 & 0.000392 & 0.000389 & Verlet &&&&  1.00771208226   \\ 
-    10000 & 0.002427 & 0.002426 & Verlet &&&&   1.00041220115  \\ 
-    100000 & 0.022931 & 0.022293 & Verlet &&&&   1.02861884897   \\ 
-    1000000 & 0.167022 & 0.175944 & Euler &&&&   1.05341811258  \\ 
-    10000000 & 1.58721 & 1.52666 & Verlet &&&&   1.03966174525  \\ 
-    100000000 & 15.1786 & 15.1176 & Verlet &&&&   1.00403503202  \\ 
-    \hline
-\end{tabularx}
-\end{center}

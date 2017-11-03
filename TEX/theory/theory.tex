@@ -1,9 +1,42 @@
 
 \subsection{the Ising model}
 
-\subsubsection{Partition function}
+The Ising model describes a coupled system. Where only the nearest neighbor affect each other. In this report the Ising model will be applied to a two dimensional magnetic system. This will be a grid of spins, where each spin $s_i$ can either have 1 or 0 as value. The total energy is expressed as: 
 
-\subsubsection{Energy}
+
+\begin{align*}
+	E = - \sum_{<i,j>} J_{i,j} s_i s_j
+\end{align*}
+
+Where the symbol < kl > indicates that we sum over nearest neighbors only.
+If we assume that each coupling has the same magnitude J, then the energy is expressed as: 
+
+\begin{align}
+	E = - J \sum_{<i,j>} s_i s_j
+	\label{eq:ising-energy}
+\end{align}
+
+\subsubsection{Periodic boundary conditions}
+
+When working with a finite matrix we run into a problem with the boundaries. They are missing neighbours. We solve this by introducing periodic boundary conditions. This means that the right neighbour for $S_n$ is assumed to take the value of $S_1$. 
+
+\subsection{Statistical physics}
+
+\subsubsection{the partition function}
+
+Boltzmann distrubtion is used as the probability distrubtion. Boltzmann distribution states the probability for $E_i$ is proportional to $e^{-\beta E_i}$ , where $\beta$ is $\frac{1}{kT}$. k is the boltzmann constant. For this to be a probability distribution, it needs to be normalized. To normalize the distribution divide the sum of probabilities by a constant Z: 
+
+\begin{align*}
+	1 = \frac{\sum_{i} e^{-\beta E_i}}{Z}
+	\\
+	Z = \sum_{i} e^{-\beta E_i}
+\end{align*}
+
+Z is called the partition function. 
+
+\subsubsection{Calculation of values}
+
+The partition function is very useful. 
 
 \subsubsection{the mean magnetic moment |M|}
 

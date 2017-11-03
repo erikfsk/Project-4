@@ -5,6 +5,7 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{tabularx}
+\usepackage{tabulary}
 \usepackage{subcaption}
 \usepackage{hyperref}
 \usepackage{fancyhdr}
@@ -39,6 +40,24 @@
   keywordstyle=\color{blue}
 }
 %\usepackage{showframe}  %Dette viser hvordan strukturen på sidene er
+
+
+
+\newcommand{\gray}[1]{\textcolor{gray}{#1}}
+\newcommand{\spin}[1]{\ifthenelse{#1 = 1}{\uparrow}{\downarrow}}
+\newcommand{\tilstand}[4]{
+    \(\displaystyle
+        \begin{matrix}
+			
+			\spin{#1}  & \spin{#2}\\
+			\spin{#3} & \spin{#4}
+			
+        \end{matrix}
+    \)
+}
+
+
+
 
 \setlength{\parindent}{0cm}
 
