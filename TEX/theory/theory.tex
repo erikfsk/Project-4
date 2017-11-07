@@ -22,9 +22,9 @@ When working with a finite matrix we run into a problem with the boundaries. The
 
 \subsection{Statistical physics}
 
-\subsubsection{the partition function}
+\subsubsection{the partition function}\label{sec:z-func}
 
-Boltzmann distrubtion is used as the probability distrubtion. Boltzmann distribution states the probability for $E_i$ is proportional to $e^{-\beta E_i}$ , where $\beta$ is $\frac{1}{kT}$. k is the boltzmann constant. For this to be a probability distribution, it needs to be normalized. To normalize the distribution divide the sum of probabilities by a constant Z: 
+Boltzmann distrubtion is used as the probability distrubtion. Boltzmann distribution states the probability for $E_i$ is proportional to $e^{-\beta E_i}$ , where $\beta$ is $\frac{1}{k_BT}$. k is the boltzmann constant. For this to be a probability distribution, it needs to be normalized. To normalize the distribution divide the sum of probabilities by a constant Z: 
 
 \begin{align*}
 	1 = \frac{\sum_{i} e^{-\beta E_i}}{Z}
@@ -36,7 +36,23 @@ Z is called the partition function.
 
 \subsubsection{Calculation of values}
 
-The partition function is very useful. 
+The partition function is very useful. In combination with the boltzmann distrubution we get a expression for the probability. 
+
+\begin{align*}
+	P(E_i) = \frac{e^{-\beta E_i}}{Z}
+\end{align*}
+
+For finding a mean value, one can simply make a sum over $P(E_i)$ multiplied by the value of interest. For instance the mean energy is given by: 
+
+\begin{align*}
+	\langle E \rangle = \sum_i E_i P(E_i)
+\end{align*}
+
+Expressions for important expectation values can be derived such for the energy E, magnetic moment |M|, specific heat capacity $C_v$ and the sesceptibility $\chi$. The expressions used in this report are listed below\cite{compphys}:
+
+\begin{align*}
+
+\end{align*}
 
 \subsubsection{the mean magnetic moment |M|}
 
