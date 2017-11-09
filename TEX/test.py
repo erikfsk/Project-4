@@ -31,3 +31,25 @@ print chi
 print chi/4
 
 
+
+
+teller_list = zeros(10000)
+Mulig_E = linspace(-2,2,10000)
+array_med_verdier = []
+
+for value in array_med_verdier:
+	for interval in range(len(Mulig_E)):
+		if value < Mulig_E[interval]:
+			teller_list[interval] += 1
+
+
+
+
+
+
+
+
+
+
+
+

@@ -18,6 +18,7 @@ inline int PeriodicBoundary(int i, int limit, int add) {
 }
 // Function to initialise energy and magnetization
 void InitializeLattice(int, mat &, double&, double&);
+void InitializeLattice_RNG(int NSpins, mat &SpinMatrix,  double& Energy, double& MagneticMoment);
 // The metropolis algorithm including the loop over Monte Carlo cycles
 void MetropolisSampling(int, int, double, vec &);
 void MetropolisSampling_Terminate(int, int, double);
@@ -205,6 +206,37 @@ void InitializeLattice(int NSpins, mat &SpinMatrix,  double& Energy, double& Mag
     }
   }
 }// end function initialise
+
+// function to initialise energy, spin matrix and magnetization
+void InitializeLattice_RNG(int NSpins, mat &SpinMatrix,  double& Energy, double& MagneticMoment)
+{
+  // Initialize the seed and call the Mersienne algo
+  std::random_device rd;
+  std::mt19937_64 gen(rd());
+  // Set up the uniform distribution for x \in [[0, 1]
+  std::uniform_real_distribution<double> RandomNumberGenerator(0.0,1.0);
+  // Initialize the lattice spin values
+  // setup spin matrix and initial magnetization
+  for(int x =0; x < NSpins; x++) {
+    for (int y= 0; y < NSpins; y++){
+      if (RandomNumberGenerator(gen) > 0.5){
+        SpinMatrix(x,y) = 1.0;
+      } else {
+        SpinMatrix(x,y) = -1.0;
+      }
+      MagneticMoment +=  (double) SpinMatrix(x,y);
+    }
+  }
+  // setup initial energy
+  for(int x =0; x < NSpins; x++) {
+    for (int y= 0; y < NSpins; y++){
+      Energy -=  (double) SpinMatrix(x,y)*
+    (SpinMatrix(PeriodicBoundary(x,NSpins,-1),y) +
+     SpinMatrix(x,PeriodicBoundary(y,NSpins,-1)));
+    }
+  }
+}// end function initialise
+
 
 
 
