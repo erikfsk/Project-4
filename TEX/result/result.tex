@@ -1,11 +1,7 @@
 \subsection{Analytic 2x2}
 
 
-
-
-
-
-
+\subsubsection{Microstates 2x2}
 
 \begin{center}
 \label{tab:states-2x2}
@@ -48,6 +44,151 @@
     \hline
 \end{tabularx}
 \end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+\pagebreak
+\subsubsection{Quantities}
+
+We will use the equations from section \ref{sec:expect}.
+\\
+\\
+For energy the eq. \ref{eq:E} will result in:
+
+\begin{align*}
+    &Z = \sum_i = e^{-\beta E_i}
+    \\
+    &\text{T = kT/J = 1} 
+    \\
+    &Z = \sum_i = e^{-\beta E_i} = 2e^{8} + 2e^{-8} + 12
+\end{align*}
+
+
+For energy the eq. \ref{eq:E} will give the result:
+
+\begin{align*}
+    &\langle E \rangle = \sum_i E_iP(E_i)
+    \\
+    &\text{T = kT/J = 1} 
+    \\
+    &\langle E \rangle = \frac{1}{Z} \sum_i E_i e^{-E_i}
+    \\
+    &\langle E \rangle = \frac{1}{Z} \left( 16 e^8 - 16e^{-8} \right) = 7.9839
+    \\ 
+    &\langle E \rangle /N= \frac{\langle E \rangle}{4} = 1.9959
+\end{align*}
+
+
+For energy the eq. \ref{eq:M} will give the result:
+
+\begin{align*}
+    &\langle |M| \rangle = \sum_i M_iP(E_i)
+    \\
+    &\text{T = kT/J = 1} 
+    \\
+    &\langle |M| \rangle = \frac{1}{Z} \sum_i M_i e^{-E_i}
+    \\
+    &\langle |M| \rangle 
+    = 
+    \frac{1}{Z} 
+    \left(
+      4\cdot1e^{8} 
+    + 2\cdot4e^{0} 
+    + 0\cdot2e^{-8} 
+    + 0\cdot4e^{0} 
+    + 2\cdot4e^{0}  
+    + 4\cdot1e^{8}
+    \right) 
+    \\
+    &\langle |M| \rangle 
+    = 
+    \frac{1}{Z} 
+    \left(
+    16
+    + 8 e^{8}
+    \right) = 3.9946
+    \\ 
+    &\langle |M| \rangle /N= \frac{\langle M \rangle}{4} = 0.9986
+\end{align*}
+
+For $C_V$ we need to calculate $\langle E^2 \rangle$:
+
+\begin{align*}
+    &\langle E^2 \rangle = \sum_i E_iP(E_i)
+    \\
+    &\text{T = kT/J = 1} 
+    \\
+    &\langle E^2 \rangle = \frac{1}{Z} \sum_i E_i^2 e^{-E_i}
+    \\
+    &\langle E^2 \rangle = \frac{1}{Z} \left( 128 e^8 + 128 e^{-8} \right)
+    \\
+    &C_V = \langle E^2 \rangle - \langle E \rangle^2 = 0.12832
+    \\ 
+    &C_V/N = 0.03208
+\end{align*}
+
+
+
+For $\chi$ we need to calculate $\langle M^2 \rangle$:
+
+\begin{align*}
+    &\langle M^2 \rangle = \sum_i M_i^2P(E_i)
+    \\
+    &\text{T = kT/J = 1} 
+    \\
+    &\langle M^2 \rangle = \frac{1}{Z} \sum_i M_i^2 e^{-E_i}
+    \\
+    &\langle M^2 \rangle 
+    = 
+    \frac{1}{Z} 
+    \left(
+      16\cdot1e^{8} 
+    + 4\cdot4e^{0} 
+    + 0\cdot2e^{-8} 
+    + 0\cdot4e^{0} 
+    + 4\cdot4e^{0}  
+    + 16\cdot1e^{8}
+    \right) 
+    \\
+    &\langle M^2 \rangle 
+    = 
+    \frac{1}{Z} 
+    \left(
+    32
+    + 32 e^{8}
+    \right) = 15.9732
+    \\
+    &\text{$\langle M \rangle$ is 0 which makes $\langle \chi \rangle = \langle M^2 \rangle$}
+    \\
+    &\langle \chi \rangle = 15.9732
+    \\
+    &\langle \chi \rangle / N = 3.9933
+\end{align*}
+
+Below you can see a summary for the quantities:
+
+\begin{align*}
+    \langle E \rangle /N &= 1.9959  \qquad &&\langle |M| \rangle /N = 0.9986
+    \\
+    C_V/N &= 0.03208  \qquad &&\langle \chi \rangle / N = 0.004010
+\end{align*}
+
+
+
+
+
+
+
+
 
 \pagebreak
 \subsection{example}

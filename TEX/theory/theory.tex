@@ -34,7 +34,7 @@ Boltzmann distrubtion is used as the probability distrubtion. Boltzmann distribu
 
 Z is called the partition function. 
 
-\subsubsection{Calculation of values}
+\subsubsection{Calculation of values}\label{sec:expect}
 
 The partition function is very useful. In combination with the boltzmann distrubution we get a expression for the probability. 
 
@@ -48,23 +48,34 @@ For finding a mean value, one can simply make a sum over $P(E_i)$ multiplied by 
 	\langle E \rangle = \sum_i E_i P(E_i)
 \end{align*}
 
-Expressions for important expectation values can be derived such for the energy E, magnetic moment |M|, specific heat capacity $C_v$ and the sesceptibility $\chi$. The expressions used in this report are listed below\cite{compphys}:
+Expressions for important expectation values can be derived such for the energy E, magnetic moment |M|, specific heat capacity $C_v$ and the sesceptibility $\chi$. The expressions used in this report are listed below\cite{compphys}:\footnote{lecture note page 427}
 
-\begin{align*}
+\begin{align}
+	&\langle E \rangle = \sum_i E_iP(E_i)
+	\label{eq:E}
+	\\
+	&\langle |M| \rangle = \sum_i M_iP(E_i)
+	\label{eq:M}
+	\\
+	&\langle C_V \rangle = \frac{1}{k T^2}
+	\left(
+	\langle E^2 \rangle - \langle E \rangle ^2
+	\right)
+	\label{eq:cv}
+	\\
+	&\langle \chi \rangle = \frac{1}{kT} 
+	\left(
+	\langle M^2 \rangle - \langle |M| \rangle ^2
+	\right)
+	\label{eq:chi}
+\end{align}
 
-\end{align*}
-
-\subsubsection{the mean magnetic moment |M|}
-
-\subsubsection{the specific heat $C_V$}
-
-\subsubsection{the susceptibility $\chi$}
 
 
+\subsection{Phase transition}
 
 
-
-
+\subsection{Randomness}
 
 
 
