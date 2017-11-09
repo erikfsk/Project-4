@@ -20,14 +20,16 @@ def get_data(txtfile):
 
 
 
-planet = get_data("mercury_8_.txt")
-planet2 = get_data("mercury_8.txt")
+b_4 = get_data("MC100000T1N2.txt")
 #plot(sqrt(planet["x"]*planet["x"] + planet["y"]*planet["y"]),"r-",label="r")
-plot(arctan2(planet["y"],planet["x"])*(360/(2*pi))*3600,"-",label="Non relativistic correction")
-plot(arctan2(planet2["y"],planet2["x"])*(360/(2*pi))*3600,"-",label="Relativistic correction")
-xlabel("Year [year$_{Mercury}$]")
-ylabel("Arc'' [$\\frac{1}{60^2}^\circ$]")
+plot(abs(b_4["E/N"]))
+plot([0,len(b_4["E/N"])],[1.99598208594,1.99598208594],"g--")
+#ylim( (0, 2.1) )
 legend(loc="best")
 grid("on")
 savefig("test.pdf")
+show()
+
+
+plot(abs(b_4["E/N"])-1.99598208594)
 show()
