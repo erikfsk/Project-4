@@ -6,6 +6,7 @@
 #include <random>
 #include <armadillo>
 #include <string>
+#include <mpi.h>
 #include <boost/timer.hpp>
 using namespace  std;
 using namespace arma;
@@ -45,10 +46,15 @@ int main(int argc, char* argv[])
     FinalTemp = atof(argv[5]);
     TempStep = atof(argv[6]);
   }
+  
+  int my_rank, numprocs;
+  MPI_Init (&argc, &argv);
+  MPI_Comm_size (MPI_COMM_WORLD, &numprocs);
+  MPI_Comm_rank (MPI_COMM_WORLD, &my_rank);
   // Declare new file name and add lattice size to file name
   string fileout = filename;
   string argument = to_string(NSpins);
-  fileout.append("N"+argument);
+  fileout.append("_N"+argument+"_RANK"+to_string(my_rank));
   fileout.append(".txt");
   ofile.open(fileout);
   ofile << "T     E/N       ";
@@ -56,18 +62,26 @@ int main(int argc, char* argv[])
   ofile << "M/N       ";
   ofile << "M-var/T       ";
   ofile << "Mabs/N       " << endl;
+
   // Start Monte Carlo sampling by looping over the selcted Temperatures
-  for (double Temperature = InitialTemp; Temperature <= FinalTemp; Temperature+=TempStep){
-    MetropolisSampling_Terminate(NSpins, 100000, Temperature);
+  for (double Temperature = InitialTemp; Temperature <= FinalTemp; Temperature+=TempStep*numprocs){
+        
+    double MY_Temperature = Temperature + my_rank*TempStep;
+    MetropolisSampling_Terminate(NSpins, 100000, MY_Temperature);
     vec ExpectationValues = zeros<mat>(5);
     // Start Monte Carlo computation and get expectation values
-    MetropolisSampling(NSpins, MCcycles, Temperature, ExpectationValues);
+    MetropolisSampling(NSpins, MCcycles, MY_Temperature, ExpectationValues);
     // 
+    WriteResultstoFile(NSpins, MCcycles, MY_Temperature, ExpectationValues);
+
+
+
   }
+
+  MPI_Finalize();
   ofile.close();  // close output file
   return 0;
 }
-
 
 
 // The Monte Carlo part with the Metropolis algo with sweeps over the lattice
@@ -95,15 +109,6 @@ void MetropolisSampling(int NSpins, int MCcycles, double Temperature, vec &Expec
   for( int de =-8; de <= 8; de+=4) EnergyDifference(de+8) = exp(-de/Temperature);
   // Start Monte Carlo cycles
     for (int cycles = 1; cycles <= MCcycles; cycles++){
-      if(cycles%(MCcycles/1000) == 0){
-        vec values = zeros<mat>(5);
-        values(0) = ExpectationValues(0)*MCcycles/cycles;
-        values(1) = ExpectationValues(1)*MCcycles/cycles;
-        values(2) = ExpectationValues(2)*MCcycles/cycles;
-        values(3) = ExpectationValues(3)*MCcycles/cycles;
-        values(4) = ExpectationValues(4)*MCcycles/cycles;
-        WriteResultstoFile(NSpins, MCcycles, Temperature, values);  
-      }
       // The sweep over the lattice, looping over all spin sites
       for(int x =0; x < NSpins; x++) {
         for (int y= 0; y < NSpins; y++){
