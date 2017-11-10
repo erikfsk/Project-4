@@ -55,7 +55,7 @@ for key in data_size[data_size.keys()[0]].keys():
 		elif key == "M/N":
 			None
 		else:
-			plot(data_size[data_size.keys()[0]]["T"],data_size[size][key],"o",label=size)
+			plot(data_size[size]["T"],data_size[size][key],"o",label=size)
 	
 	if key == "T":
 		None
