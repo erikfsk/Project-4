@@ -82,9 +82,9 @@ For energy the eq. \ref{eq:E} will give the result:
     \\
     &\langle E \rangle = \frac{1}{Z} \sum_i E_i e^{-E_i}
     \\
-    &\langle E \rangle = \frac{1}{Z} \left( 16 e^8 - 16e^{-8} \right) = 7.9839
+    &\langle E \rangle = \frac{1}{Z} \left( -16 e^8 + 16e^{-8} \right) = -7.9839
     \\ 
-    &\langle E \rangle /N= \frac{\langle E \rangle}{4} = 1.9959
+    &\langle E \rangle /N= \frac{\langle E \rangle}{4} = -1.9959
 \end{align*}
 
 
@@ -177,14 +177,206 @@ For $\chi$ we need to calculate $\langle M^2 \rangle$:
 Below you can see a summary for the quantities:
 
 \begin{align*}
-    \langle E \rangle /N &= 1.9959  \qquad &&\langle |M| \rangle /N = 0.9986
+    \langle E \rangle /N &= -1.9959  \qquad &&\langle |M| \rangle /N = 0.9986
     \\
     C_V/N &= 0.03208  \qquad &&\langle \chi \rangle / N = 0.004010
 \end{align*}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \pagebreak
 \subsection{Simulation 2x2}
+
+These simulations ran for $10^5$ monte carlo cycles. All the simulations were done at T=1 and for a 2x2 grid.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{result/bilder/2x2/energy22}
+        \caption{}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{result/bilder/2x2/energyerror22}
+        \caption{}
+    \end{subfigure}
+    \caption{a) }
+    \label{fig:22-energy}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{result/bilder/2x2/cv22}
+        \caption{}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{result/bilder/2x2/cverror22}
+        \caption{}
+    \end{subfigure}
+    \caption{a) }
+    \label{fig:22-energy}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{result/bilder/2x2/mabs22}
+        \caption{}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{result/bilder/2x2/mabserror22}
+        \caption{}
+    \end{subfigure}
+    \caption{a) }
+    \label{fig:22-energy}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{result/bilder/2x2/chi22}
+        \caption{}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{result/bilder/2x2/chierror22}
+        \caption{}
+    \end{subfigure}
+    \caption{a) }
+    \label{fig:22-energy}
+\end{figure}
+
+
+
+
+
+\subsection{Accepted configurations}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{result/bilder/config/energy22-MC1000000T1-configN20}
+        \caption{}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{result/bilder/config/energy22-MC1000000T1-config-RNGN20}
+        \caption{}
+    \end{subfigure}
+    \caption{a) }
+    \label{fig:config-T1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{result/bilder/config/energy22-MC1000000T24-configN20}
+        \caption{}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{result/bilder/config/energy22-MC1000000T24-config-RNGN20}
+        \caption{}
+    \end{subfigure}
+    \caption{a) }
+    \label{fig:config-T24}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\pagebreak
+\subsection{Probability distribution}
+
+Several simulations were made with different L. Below a selected few of these simulations are shown. All the data and figures for this section are available at my \href{https://github.com/erikfsk/Project-4/tree/master/Project4/Result/4d/}{\textcolor{blue}{github}}. The figures below were created with a python \href{https://github.com/erikfsk/Project-4/blob/master/Project4/Result/4d/plot-hist.py}{\color{blue}{script}}.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{result/bilder/hist/MC1000000T1-distN20-hist}
+        \caption{}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{result/bilder/hist/MC1000000T24-distN20-hist}
+        \caption{}
+    \end{subfigure}
+    \caption{a) }
+    \label{fig:tc-chi-cv}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -195,22 +387,22 @@ Below you can see a summary for the quantities:
 
 \subsubsection{Numerical studies of phase transition}
 
-Several simulations were made with different L. Below a selected few of these simulations are shown. All the results are available at my \href{https://github.com/erikfsk/Project-4/tree/master/Project4/Result/4e/}{\textcolor{blue}{github}}
+Several simulations were made with different L. Below a selected few of these simulations are shown. All the data and figures for this section are available at my \href{https://github.com/erikfsk/Project-4/tree/master/Project4/Result/4e/}{\textcolor{blue}{github}}. The figures below were created with a python \href{https://github.com/erikfsk/Project-4/blob/master/Project4/Result/4e/plot-4e.py}{\color{blue}{script}}.
 
 \begin{figure}[H]
     \centering
     \begin{subfigure}{0.5\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{result/bilder/chi-Tc}
+        \includegraphics[width=\linewidth]{result/bilder/Tc/chi-Tc}
         \caption{}
     \end{subfigure}%
     ~ 
     \begin{subfigure}{0.5\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{result/bilder/cv-Tc}
+        \includegraphics[width=\linewidth]{result/bilder/Tc/cv-Tc}
         \caption{}
     \end{subfigure}
-    \caption{a) shows the orbit of earth around the sun. The intial velocity is set to $2\pi$ in y direction and the start position to 1 au in x direction. b) shows how the error develops. The intial values should give a perfect circular motion. So the error is calculated by $r_i - r_{0}$. It is apparent that the Verlet-Velocity method is a better approximation. This simulation was with 1000 points with the end time of 1 year. Both simulations was produced by \href{https://github.com/erikfsk/Project-3/tree/master/Project3/earth-sun-standard-results}{\textcolor{blue}{plot\_earth\_sun.py}}}
+    \caption{a) }
     \label{fig:tc-chi-cv}
 \end{figure}
 
@@ -218,16 +410,16 @@ Several simulations were made with different L. Below a selected few of these si
     \centering
     \begin{subfigure}{0.5\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{result/bilder/e-Tc}
+        \includegraphics[width=\linewidth]{result/bilder/Tc/e-Tc}
         \caption{}
     \end{subfigure}%
     ~ 
     \begin{subfigure}{0.5\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{result/bilder/m-Tc}
+        \includegraphics[width=\linewidth]{result/bilder/Tc/m-Tc}
         \caption{}
     \end{subfigure}
-    \caption{a) shows the orbit of earth around the sun. The intial velocity is set to $2\pi$ in y direction and the start position to 1 au in x direction. b) shows how the error develops. The intial values should give a perfect circular motion. So the error is calculated by $r_i - r_{0}$. It is apparent that the Verlet-Velocity method is a better approximation. This simulation was with 1000 points with the end time of 1 year. Both simulations was produced by \href{https://github.com/erikfsk/Project-3/tree/master/Project3/earth-sun-standard-results}{\textcolor{blue}{plot\_earth\_sun.py}}}
+    \caption{a) }
     \label{fig:tc-E-M}
 \end{figure}
 
