@@ -183,29 +183,81 @@ Below you can see a summary for the quantities:
 \end{align*}
 
 
-
-
-
-
+\pagebreak
+\subsection{Simulation 2x2}
 
 
 
 \pagebreak
-\subsection{example}
+\subsection{Phase transition}
+
+
+
+\subsubsection{Numerical studies of phase transition}
+
+Several simulations were made with different L. Below a selected few of these simulations are shown. All the results are available at my \href{https://github.com/erikfsk/Project-4/tree/master/Project4/Result/4e/}{\textcolor{blue}{github}}
 
 \begin{figure}[H]
     \centering
     \begin{subfigure}{0.5\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{result/bilder/earth-sun.pdf}
-    	\caption{}
+        \includegraphics[width=\linewidth]{result/bilder/chi-Tc}
+        \caption{}
     \end{subfigure}%
     ~ 
     \begin{subfigure}{0.5\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{result/bilder/earth-sun-error.pdf}
+        \includegraphics[width=\linewidth]{result/bilder/cv-Tc}
         \caption{}
     \end{subfigure}
     \caption{a) shows the orbit of earth around the sun. The intial velocity is set to $2\pi$ in y direction and the start position to 1 au in x direction. b) shows how the error develops. The intial values should give a perfect circular motion. So the error is calculated by $r_i - r_{0}$. It is apparent that the Verlet-Velocity method is a better approximation. This simulation was with 1000 points with the end time of 1 year. Both simulations was produced by \href{https://github.com/erikfsk/Project-3/tree/master/Project3/earth-sun-standard-results}{\textcolor{blue}{plot\_earth\_sun.py}}}
-    \label{fig:earth-sun}
+    \label{fig:tc-chi-cv}
 \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{result/bilder/e-Tc}
+        \caption{}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{result/bilder/m-Tc}
+        \caption{}
+    \end{subfigure}
+    \caption{a) shows the orbit of earth around the sun. The intial velocity is set to $2\pi$ in y direction and the start position to 1 au in x direction. b) shows how the error develops. The intial values should give a perfect circular motion. So the error is calculated by $r_i - r_{0}$. It is apparent that the Verlet-Velocity method is a better approximation. This simulation was with 1000 points with the end time of 1 year. Both simulations was produced by \href{https://github.com/erikfsk/Project-3/tree/master/Project3/earth-sun-standard-results}{\textcolor{blue}{plot\_earth\_sun.py}}}
+    \label{fig:tc-E-M}
+\end{figure}
+
+\subsubsection{Extracting the critical temperature}
+
+
+\begin{align*}
+    &T_C (L) - T_C (L=\infty) = a L^{\frac{-1}{v}}
+    \\
+    \\
+    &\text{To find a we set the second L to a known value}
+    \\
+    \\
+    &T_C (L=100) - T_C (L=140) = a L^{\frac{-1}{v}}
+    \\
+    \\
+    &a = 
+    \left(
+    T_C (L=100) - T_C (L=140)
+    \right)
+    L^{\frac{1}{v}}
+    \\
+    \\
+    &T_C (L=\infty) = T_C (L=100) - a L^{\frac{-1}{v}} 
+    \\
+    \\
+    &T_C (L=\infty) = T_C (L=100) - \left(
+    T_C (L=100) - T_C (L=140)
+    \right)
+    \\
+    \\
+    &T_C (L=\infty) = 2.26 
+\end{align*}
