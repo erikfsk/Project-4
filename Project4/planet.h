@@ -11,6 +11,8 @@
 #include <iomanip>
 using namespace std;
 
+
+mpirun -np 4 main.exe test 100      1000000 2.15 2.351 0.01
 class planet
 {
 public:
