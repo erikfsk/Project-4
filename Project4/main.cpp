@@ -77,9 +77,8 @@ int main(int argc, char* argv[])
 
 
   }
-
-  MPI_Finalize();
   ofile.close();  // close output file
+  MPI_Finalize();
   return 0;
 }
 
