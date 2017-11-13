@@ -20,11 +20,31 @@ If we assume that each coupling has the same magnitude J, then the energy is exp
 
 When working with a finite matrix we run into a problem with the boundaries. They are missing neighbours. We solve this by introducing periodic boundary conditions. This means that the right neighbour for $S_n$ is assumed to take the value of $S_1$. 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \subsection{Statistical physics}
 
 \subsubsection{the partition function}\label{sec:z-func}
 
-Boltzmann distrubtion is used as the probability distrubtion. Boltzmann distribution states the probability for $E_i$ is proportional to $e^{-\beta E_i}$ , where $\beta$ is $\frac{1}{k_BT}$. k is the boltzmann constant. For this to be a probability distribution, it needs to be normalized. To normalize the distribution divide the sum of probabilities by a constant Z: 
+Boltzmann distribution is used as the probability distribution. Boltzmann distribution states the probability for $E_i$ is proportional to $e^{-\beta E_i}$ , where $\beta$ is $\frac{1}{k_BT}$. k is the Boltzmann constant. For this to be a probability distribution, it needs to be normalized. To normalize the distribution divide the sum of probabilities by a constant Z: 
 
 \begin{align*}
 	1 = \frac{\sum_{i} e^{-\beta E_i}}{Z}
@@ -36,7 +56,7 @@ Z is called the partition function.
 
 \subsubsection{Calculation of values}\label{sec:expect}
 
-The partition function is very useful. In combination with the boltzmann distrubution we get a expression for the probability. 
+The partition function is very useful. In combination with the Boltzmann distribution we get a expression for the probability. 
 
 \begin{align*}
 	P(E_i) = \frac{e^{-\beta E_i}}{Z}
@@ -48,7 +68,7 @@ For finding a mean value, one can simply make a sum over $P(E_i)$ multiplied by 
 	\langle E \rangle = \sum_i E_i P(E_i)
 \end{align*}
 
-Expressions for important expectation values can be derived such for the energy E, magnetic moment |M|, specific heat capacity $C_v$ and the sesceptibility $\chi$. The expressions used in this report are listed below\cite{compphys}:\footnote{lecture note page 427}
+Expressions for important expectation values can be derived such for the energy E, magnetic moment |M|, specific heat capacity $C_v$ and the susceptibility $\chi$. The expressions used in this report are listed below\cite{compphys}:\footnote{lecture note page 420}
 
 \begin{align}
 	&\langle E \rangle = \sum_i E_iP(E_i)
@@ -72,12 +92,64 @@ Expressions for important expectation values can be derived such for the energy 
 
 
 
+
+
+
+
+
+
+
+
+
 \subsection{Phase transition}
+
+The two dimensional Ising model is able to predict a phase transition in the material. At a critical temperature $T_C$ the quantities for the material will start to behave differently. For $C_V$ and for $\chi$ the phase transition is a sharp peak when plotted against Temperature. For $|M|$ and E it can be seen, but only as a slight change in value. 
+\\
+\\
+A second order phase transition is characterized by a correlation length. For finite lattice the correlation length is equal to the length of the system. $T_C$ can be obtain through scaling of the results from a finite system with a infinite system:
+
+\begin{align}
+    &T_C (L) - T_C (L=\infty) = a L^{\frac{-1}{v}}
+    \label{eq:tc}
+\end{align}
+
+a is an unknown constant and v = 1. For finding a we use eq. \ref{eq:tc} with two different L. Substract the expression with $L_i$ by the expression with $L_j$ and we get: 
+
+\begin{align*}
+    &T_C (L_i) - T_C (L_j) = a 
+    \left(
+    L_i^{\frac{-1}{v}}-L_j^{\frac{-1}{v}}
+    \right)
+\end{align*}
+\begin{align}
+    &a = 
+    \frac{T_C (L_i) - T_C (L_j)} 
+    {
+    L_i^{\frac{-1}{v}}-L_j^{\frac{-1}{v}}
+    } \label{eq:find-a}
+\end{align}
+
+We combine this with eq. \ref{eq:tc} and we get an expression for $T_C(\infty)$:
+
+\begin{align*}
+    &T_C (L) - T_C (L=\infty) = a L^{\frac{-1}{v}}
+\end{align*}
+\begin{align}
+    &T_C (L=\infty) = T_C (L) -  \frac{T_C (L_i) - T_C (L_j)} 
+    {
+    L_i^{\frac{-1}{v}}-L_j^{\frac{-1}{v}}
+    } \label{eq:find-a}
+     L^{\frac{-1}{v}}
+\end{align}
+
+
+
+
+
+
 
 
 \subsection{Randomness}
-
-
 
 
 

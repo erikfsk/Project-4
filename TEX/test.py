@@ -30,10 +30,41 @@ chi = M_2 - M**2
 print chi
 print chi/4
 
+def a(li,lj,ti,tj):
+	return (ti-tj)/((1./li**-1) - (1./lj**-1))
+
+print "-------------------"
+print "-------------------"
+
+b=a(60 ,100,2.30,2.29)+a(60 ,140,2.30,2.28)+a(60 ,200,2.30,2.27)+a(100,140,2.29,2.28)+a(100,200,2.29,2.27)+a(140,200,2.28,2.27)
+print b/6 
+a_average = abs(b/6)
+
+
+print (2.29 - (2./log(1 + sqrt(2))))/(1./(100**-1))
+
+print "-------------------"
+print "-------------------"
+
+def t_c_infty(li,tc,a):
+	return tc -  (a/float(li))
+
+print 
+print 60,t_c_infty(60 ,2.30,a_average)
+print 100,t_c_infty(100,2.29,a_average)
+print 140,t_c_infty(140,2.28,a_average)
+print 200,t_c_infty(200,2.27,a_average)
 
 
 
 
+
+
+
+2.2999
+2.2899
+2.2799
+2.2699
 
 
 

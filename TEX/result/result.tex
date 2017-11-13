@@ -428,28 +428,61 @@ Several simulations were made with different L. Below a selected few of these si
 
 \begin{align*}
     &T_C (L) - T_C (L=\infty) = a L^{\frac{-1}{v}}
-    \\
-    \\
-    &\text{To find a we set the second L to a known value}
-    \\
-    \\
-    &T_C (L=100) - T_C (L=140) = a L^{\frac{-1}{v}}
-    \\
+\end{align*}
+
+\begin{align*}
+    &T_C (L_i) - T_C (L_j) = a 
+    \left(
+    L_i^{\frac{-1}{v}}-L_j^{\frac{-1}{v}}
+    \right)
     \\
     &a = 
-    \left(
-    T_C (L=100) - T_C (L=140)
-    \right)
-    L^{\frac{1}{v}}
-    \\
-    \\
-    &T_C (L=\infty) = T_C (L=100) - a L^{\frac{-1}{v}} 
-    \\
-    \\
-    &T_C (L=\infty) = T_C (L=100) - \left(
-    T_C (L=100) - T_C (L=140)
-    \right)
-    \\
-    \\
-    &T_C (L=\infty) = 2.26 
+    \frac{T_C (L_i) - T_C (L_j)} 
+    {
+    L_i^{\frac{-1}{v}}-L_j^{\frac{-1}{v}}
+    }
 \end{align*}
+
+
+\begin{center}
+\label{tab:extracting a}
+\captionof{table}{The table shows how a differ for which $L_i$ and $L_j$ one uses. The values for $T_C$ were picked from figure \ref{fig:tc-chi-cv} a)}
+\begin{tabularx}{\textwidth}{c X c X c X c X c}
+    \hline 
+    \hline 
+        $L_i$ && $L_j$ && $T_{C_i}$ && $T_{C_j}$ && a\\ 
+    \hline
+        60      &&      100     &&  2.30  &&  2.29  && 0.00025 \\
+        60      &&      140     &&  2.30  &&  2.28  && 0.00025 \\
+        60      &&      200     &&  2.30  &&  2.27  && 0.0002142 \\
+        100     &&      140     &&  2.29  &&  2.28  && 0.00025 \\
+        100     &&      200     &&  2.29  &&  2.27  && 0.0002 \\
+        140     &&      200     &&  2.28  &&  2.27  && 0.0001666 \\
+    \hline
+\end{tabularx}
+\end{center}
+
+From the values for a above, we can extract the average value of a.
+ $\overline{a}$ turns out to be 0.0002218.
+
+\begin{align*}
+    &T_C (L) - T_C (L=\infty) = a L^{\frac{-1}{v}}
+    \\
+    &T_C (L=\infty) =T_C (L) -  a L^{\frac{-1}{v}}
+\end{align*}
+
+\begin{center}
+\label{tab:extracting a}
+\captionof{table}{The table shows how a differ for which $L_i$ and $L_j$ one uses. The values for $T_C$ were picked from figure \ref{fig:tc-chi-cv} a)}
+\begin{tabularx}{\textwidth}{c X c X c X c }
+    \hline 
+    \hline 
+        $L_i$ && $T_C(L_i)$ && $T_C(\infty)$ with $\overline{a}$ \\ 
+    \hline
+        60      &&  2.30  && 2.2999\\
+        100     &&  2.29  && 2.2899\\
+        140     &&  2.28  && 2.2799\\
+        200     &&  2.27  && 2.2699\\
+    \hline
+\end{tabularx}
+\end{center}
