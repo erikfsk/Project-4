@@ -1,11 +1,27 @@
 
-\subsection{Metropolis algorithm}
+\subsection{Metropolis algorithm}\ref{sec:metro}
 
 The metropolis algorithm only has a few steps. First, pick one site in the matrix of spins. This process need to be random. For that site, calculate the energy difference if the spin is flipped. Then the algorithm decide whether to flip the spin or not. This is decided based on the energy difference. If the difference is negative flip, then flip the spin. If not, then pick a random number between 0 and 1 and if this number is less then $e^{-\beta \Delta E}$ flip the spin. Else keep the spin. Finally update expectation values.
 \todo{REF}
 
+\subsubsection{Precalculate}
 
-\subsection{}
+The energy difference is expressed as an exponential function. Exponential values are expensive to calculate. In two dimensions there is a finite number of energy differences. We can precalculated the exponentials. By calculating these in advance the program will run more efficient. It can be shown that the energy difference then is:
+
+\begin{align*}
+	\Delta E = 2J s_j \sum_{<k>} s_k
+\end{align*}
 
 
+\subsection{Randomness}
+
+\todo{REF hvilken random generater bruker vi.}
+
+
+\section{Implementation}
+
+
+The metropolis algorithm was implemented as discussed in section \ref{sec:metro} in the programs called main-"...".cpp. Their is a few different versions of the main.cpp. The only difference is basicly how they write to file. 
+
+%mpirun -np 4 main.exe test 100      1000000 2.15 2.351 0.01
 
