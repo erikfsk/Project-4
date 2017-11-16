@@ -1,8 +1,8 @@
 
-\subsection{Metropolis algorithm}\ref{sec:metro}
+\subsection{Metropolis algorithm}\label{sec:metro}
 
 The metropolis algorithm only has a few steps. First, pick one site in the matrix of spins. This process need to be random. For that site, calculate the energy difference if the spin is flipped. Then the algorithm decide whether to flip the spin or not. This is decided based on the energy difference. If the difference is negative flip, then flip the spin. If not, then pick a random number between 0 and 1 and if this number is less then $e^{-\beta \Delta E}$ flip the spin. Else keep the spin. Finally update expectation values.
-\todo{REF}
+
 
 \subsubsection{Precalculate}
 
@@ -12,16 +12,61 @@ The energy difference is expressed as an exponential function. Exponential value
 	\Delta E = 2J s_j \sum_{<k>} s_k
 \end{align*}
 
-
-\subsection{Randomness}
-
-\todo{REF hvilken random generater bruker vi.}
+\todo{Write more}
 
 
+%\subsection{Randomness}
+
+%\todo{REF hvilken random generater bruker vi.}
+
+
+
+\pagebreak
 \section{Implementation}
 
 
-The metropolis algorithm was implemented as discussed in section \ref{sec:metro} in the programs called main-"...".cpp. Their is a few different versions of the main.cpp. The only difference is basicly how they write to file. \href{https://github.com/erikfsk/Project-4/tree/master/Project4}{\color{blue}{github}}
+The metropolis algorithm was implemented as discussed in section \ref{sec:metro} in the programs called main-"...".cpp. Their is a few different versions of the main.cpp. The only difference is basicly how they write to file. All of the programs discussed in this section can be found at \href{https://github.com/erikfsk/Project-4/tree/master/Project4}{\color{blue}{github}}.
+\\
+\\
+These calculations are expensive in terms of FLOPs. That is why a parallelized version has been made. Not all the code needs to be parallelized. Most of the code in the parallelized version is the same as for the non-parallelized. Except each thread open a specific file for that thread and runs the metropolis algorithm for $\frac{1}{\text{nr. of temperatures}}$. What temperature that each thread calculate is determined by the rank of the thread. Since the rank is a unique number for each thread, all the temperatures calculated is unique from the other temperatures. 
+\\
+\\
+MPI is used since it is easy to implement and it does not have shared memory. The parallelized version should be (nr. of threads - 1) times faster then the normal version.
 
-%mpirun -np 4 main.exe test 100      1000000 2.15 2.351 0.01
+\begin{center}
+\label{tab:parallell}
+\captionof{table}{The grids ran for 50'000 Monte Carlo cycles. The test ran on a macbook pro 13. It has a dual core CPU. Expected difference is 2. }
+\begin{tabularx}{\textwidth}{c X c X c X c X c}
+    \hline 
+    \hline 
+        Size && Normal && MPI && Expected difference && Actual difference\\ 
+    \hline
+        40x40   	&&      15.251s	&&		5.991 s 	&&	2.000	&&	2.546	\\  
+        60x60   	&&      33.923s	&&		13.351 s	&&	2.000	&&	2.541	\\
+        100x100   	&&      92.584s	&&		36.245 s	&&	2.000	&&	2.554	\\
+    \hline
+\end{tabularx}
+\end{center}
+
+The difference was higher, then expected. This is due to the Hyper-Threading technology in this CPU \footnote{\href{https://www.intel.com/content/www/us/en/architecture-and-technology/hyper-threading/hyper-threading-technology.html}{\color{blue}{Intel Hyper-Threading Technology}}}. 
+\\
+\\
+For size scaling we expect a time increased proportional to the size increase squared. 
+
+\begin{center}
+\label{tab:expected-time}
+\captionof{table}{The table shows how we expect the time to develop and how it actually it develops. There is a minor difference from expected and calculated and that comes from the fact that the program does more then just the algorithm and the fact that the algorithm has not been perfectly implemented.}
+\begin{tabularx}{\textwidth}{c X c X c X c}
+    \hline 
+    \hline 
+        Size && Expected time && Actual time && $\frac{T_{i}}{T_{40}}$\\ 
+    \hline
+        40x40   	&&      x		&&		8.490 s 	&&	1.000	\\  
+        60x60   	&&      2.25x	&&		19.350 s	&&	2.279	\\
+        100x100   	&&      6.25x	&&		54.068 s	&&	6.368	\\
+    \hline
+\end{tabularx}
+\end{center}
+
+
 

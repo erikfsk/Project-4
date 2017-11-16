@@ -41,10 +41,10 @@ for txtfile in txtfiles:
 
 
 teller = 0
-label_dict = {	"E/N" : "E",				\
+label_dict = {	"E/N" : "E/N",				\
 				"E-var/TT" : "$C_V$",		\
 				"M-var/T" : "$\chi$",		\
-				"Mabs/N": "|M|"		}
+				"Mabs/N": "|M|/N"		}
 
 
 for key in data_size[data_size.keys()[0]].keys():
@@ -63,8 +63,9 @@ for key in data_size[data_size.keys()[0]].keys():
 		None
 	else:
 		legend(loc="best")
-		ylabel(label_dict[key],rotation=90)
-		xlabel("T")
+		ylabel(label_dict[key],fontsize=20)
+		xlabel("T",fontsize=20)
 		grid("on")
+		tight_layout()
 		savefig("%s.pdf" % teller)
 		show()

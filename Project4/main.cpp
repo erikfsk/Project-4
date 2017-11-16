@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
   for (double Temperature = InitialTemp; Temperature <= FinalTemp; Temperature+=TempStep*numprocs){
         
     double MY_Temperature = Temperature + my_rank*TempStep;
-    MetropolisSampling_Terminate(NSpins, 100000, MY_Temperature);
+    //MetropolisSampling_Terminate(NSpins, 100000, MY_Temperature);
     vec ExpectationValues = zeros<mat>(5);
     // Start Monte Carlo computation and get expectation values
     MetropolisSampling(NSpins, MCcycles, MY_Temperature, ExpectationValues);
