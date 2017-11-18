@@ -1,5 +1,5 @@
-#c++ 
-compile= mpicxx 
+#c++ mpicxx
+compile= mpicxx
 LIB=  -L/usr/local/lib -larmadillo
 FLAGS= -O3
 INCLUDEPATH= -I/usr/local/include

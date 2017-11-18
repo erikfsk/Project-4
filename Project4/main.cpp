@@ -57,15 +57,10 @@ int main(int argc, char* argv[])
   fileout.append("_N"+argument+"_RANK"+to_string(my_rank));
   fileout.append(".txt");
   ofile.open(fileout);
-  ofile << "T     E/N       ";
-  ofile << "E-var/TT       ";
-  ofile << "M/N       ";
-  ofile << "M-var/T       ";
-  ofile << "Mabs/N       " << endl;
+  ofile << "T"<< setw(15) << "E/N" << setw(15) << "E-var/TT" << setw(15) << "M/N" << setw(15) <<"M-var/T" << setw(15) <<"Mabs/N\n";
 
   // Start Monte Carlo sampling by looping over the selcted Temperatures
-  for (double Temperature = InitialTemp; Temperature <= FinalTemp; Temperature+=TempStep*numprocs){
-        
+  for (double Temperature = InitialTemp; Temperature <= FinalTemp; Temperature+=TempStep*numprocs){     
     double MY_Temperature = Temperature + my_rank*TempStep;
     //MetropolisSampling_Terminate(NSpins, 100000, MY_Temperature);
     vec ExpectationValues = zeros<mat>(5);
@@ -73,9 +68,6 @@ int main(int argc, char* argv[])
     MetropolisSampling(NSpins, MCcycles, MY_Temperature, ExpectationValues);
     // 
     WriteResultstoFile(NSpins, MCcycles, MY_Temperature, ExpectationValues);
-
-
-
   }
   ofile.close();  // close output file
   MPI_Finalize();
@@ -111,8 +103,6 @@ void MetropolisSampling(int NSpins, int MCcycles, double Temperature, vec &Expec
       // The sweep over the lattice, looping over all spin sites
       for(int x =0; x < NSpins; x++) {
         for (int y= 0; y < NSpins; y++){
-
-
           int ix = (int) (RandomNumberGenerator(gen)*(double)NSpins);
           int iy = (int) (RandomNumberGenerator(gen)*(double)NSpins);
           int deltaE =  2*SpinMatrix(ix,iy)*
@@ -242,11 +232,6 @@ void InitializeLattice_RNG(int NSpins, mat &SpinMatrix,  double& Energy, double&
 }// end function initialise
 
 
-
-
-
-
-
 void WriteResultstoFile(int NSpins, int MCcycles, double temperature, vec ExpectationValues)
 {
   double norm = 1.0/((double) (MCcycles));  // divided by  number of cycles 
@@ -259,7 +244,7 @@ void WriteResultstoFile(int NSpins, int MCcycles, double temperature, vec Expect
   double Evariance = (E2_ExpectationValues- E_ExpectationValues*E_ExpectationValues)/NSpins/NSpins;
   double Mvariance = (M2_ExpectationValues - Mabs_ExpectationValues*Mabs_ExpectationValues)/NSpins/NSpins;
   ofile << setiosflags(ios::showpoint | ios::uppercase);
-  ofile << setw(15) << setprecision(8) << temperature;
+  ofile << setprecision(8) << temperature;
   ofile << setw(15) << setprecision(8) << E_ExpectationValues/NSpins/NSpins;
   ofile << setw(15) << setprecision(8) << Evariance/temperature/temperature;
   ofile << setw(15) << setprecision(8) << M_ExpectationValues/NSpins/NSpins;

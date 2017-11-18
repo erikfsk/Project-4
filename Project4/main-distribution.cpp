@@ -51,11 +51,8 @@ int main(int argc, char* argv[])
   fileout.append("N"+argument);
   fileout.append(".txt");
   ofile.open(fileout);
-  ofile << "T     E/N       "<< endl;
-  //ofile << "E-var/TT       ";
-  //ofile << "M/N       ";
-  //ofile << "M-var/T       ";
-  //ofile << "Mabs/N       " << endl;
+  ofile << "T     E/N       ";
+  ofile << "E-var/TT       "<< endl;
   // Start Monte Carlo sampling by looping over the selcted Temperatures
   for (double Temperature = InitialTemp; Temperature <= FinalTemp; Temperature+=TempStep){
     MetropolisSampling_Terminate(NSpins, 1000000, Temperature);
@@ -95,16 +92,10 @@ void MetropolisSampling(int NSpins, int MCcycles, double Temperature, vec &Expec
   for( int de =-8; de <= 8; de+=4) EnergyDifference(de+8) = exp(-de/Temperature);
   // Start Monte Carlo cycles
     for (int cycles = 1; cycles <= MCcycles; cycles++){
-      //if(cycles%(MCcycles/1000) == 0){
-        vec values = zeros<mat>(5);
-        values(0) = Energy*MCcycles;
-        //values(1) = ExpectationValues(1)*MCcycles/cycles;
-        //values(2) = ExpectationValues(2)*MCcycles/cycles;
-        //values(3) = ExpectationValues(3)*MCcycles/cycles;
-        //values(4) = ExpectationValues(4)*MCcycles/cycles;
-        WriteResultstoFile(NSpins, MCcycles, Temperature, values);  
-      //}
-      // The sweep over the lattice, looping over all spin sites
+      vec values = zeros<mat>(2);
+      values(0) = Energy*MCcycles;
+      values(1) = Energy*Energy*MCcycles;
+      WriteResultstoFile(NSpins, MCcycles, Temperature, values);  
       for(int x =0; x < NSpins; x++) {
         for (int y= 0; y < NSpins; y++){
 
@@ -128,11 +119,6 @@ void MetropolisSampling(int NSpins, int MCcycles, double Temperature, vec &Expec
 
 
     // update expectation values  for local node
-    ExpectationValues(0) += Energy;    
-    ExpectationValues(1) += Energy*Energy;
-    ExpectationValues(2) += MagneticMoment;    
-    ExpectationValues(3) += MagneticMoment*MagneticMoment; 
-    ExpectationValues(4) += fabs(MagneticMoment);
   }
 } // end of Metropolis sampling over spins
 
@@ -238,11 +224,6 @@ void InitializeLattice_RNG(int NSpins, mat &SpinMatrix,  double& Energy, double&
 }// end function initialise
 
 
-
-
-
-
-
 void WriteResultstoFile(int NSpins, int MCcycles, double temperature, vec ExpectationValues)
 {
   double norm = 1.0/((double) (MCcycles));  // divided by  number of cycles 
@@ -256,9 +237,6 @@ void WriteResultstoFile(int NSpins, int MCcycles, double temperature, vec Expect
   double Mvariance = (M2_ExpectationValues - Mabs_ExpectationValues*Mabs_ExpectationValues)/NSpins/NSpins;
   ofile << setiosflags(ios::showpoint | ios::uppercase);
   ofile << setw(15) << setprecision(8) << temperature;
-  ofile << setw(15) << setprecision(8) << E_ExpectationValues/NSpins/NSpins << endl;
-  //ofile << setw(15) << setprecision(8) << Evariance/temperature/temperature;
-  //ofile << setw(15) << setprecision(8) << M_ExpectationValues/NSpins/NSpins;
-  //ofile << setw(15) << setprecision(8) << Mvariance/temperature;
-  //ofile << setw(15) << setprecision(8) << Mabs_ExpectationValues/NSpins/NSpins << endl;
+  ofile << setw(15) << setprecision(8) << E_ExpectationValues;
+  ofile << setw(15) << setprecision(8) << E2_ExpectationValues << endl;
 } // end output function

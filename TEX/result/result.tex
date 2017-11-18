@@ -388,11 +388,11 @@ In this section convergence for a 20x20 grid is studied. All grids were simulate
         \includegraphics[width=\linewidth]{result/bilder/20x20/M-N20-T1-Term}
         \caption{}
     \end{subfigure}
-    \caption{The figure shows the development of E when T = 1 when we dont use the first $10^5$ steps.  }
+    \caption{The figure shows the development of E and |M| when T = 1 when we dont use the first $10^5$ steps.  }
     \label{fig:equilibrium}
 \end{figure}
 
-For most of the figures in this section, almost 40\% of the MC seem to be used for obtaining equilibrium, but when removing one hundred thousand Monte Carlo cycles equilibrium seem to be obtained almost immediately. The first results are so bad that the system uses a longer time to achieve equilibrium, because the system needs to compensate for the first results. When removing this first part all the results that are used to calculate the expectation value is of good quality. For the rest of the report $10^5$ Monte Carlo cycles will be used to obtain equilibrium. If you have a lot of computational power and time, one can use use $10^6$ to obtain equilibrium. 
+For most of the figures in this section, almost 40\% of the MC seem to be used for obtaining equilibrium, but when removing one hundred thousand Monte Carlo cycles, equilibrium seem to be obtained almost immediately. The first results are so bad that the system uses a longer time to achieve equilibrium, because the system needs to compensate for the first results. When removing this first part all the results that are used to calculate the expectation value is of good quality. For the rest of the report $10^5$ Monte Carlo cycles will be used to obtain equilibrium. If you have a lot of computational power and time, one can use use $10^6$ to obtain equilibrium. 
 
 
 
@@ -472,6 +472,12 @@ There are two things worth noting. First the difference between is non-existent 
 \pagebreak
 \subsection{Probability distribution}
 
+
+In this section the distribution of energies will be discussed for T = 1 and T = 2.4. 
+For temperaturer vekke fra Tc forventer vi at evar er i nærheten av det state... forteller oss
+mens ved Tc divergerer Evar, ergo vi får feil estimat i forhold til forventet fra statestikk. 
+
+
 \todo{This is not done}
 
 \begin{figure}[H]
@@ -487,8 +493,17 @@ There are two things worth noting. First the difference between is non-existent 
         \includegraphics[width=\linewidth]{result/bilder/hist/MC1000000T24-distN20-hist}
         \caption{}
     \end{subfigure}
-    \caption{a) }
-    \label{fig:tc-chi-cv}
+    \caption{a) Shows a histogram of energy states at T = 1. b) Shows a histogram of energy states at T = 2.4. }
+    \label{fig:hist}
+\end{figure}
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{result/bilder/hist/compared-hist}
+    \caption{The figure shows figure \ref{fig:hist} b) compares to a normal distribution. The STD and expectation value was calculated based on the distribution.}
+    \label{fig:hist-normal}
 \end{figure}
 
 
@@ -535,7 +550,7 @@ Several simulations were made with different L. Below a selected few of these si
         \includegraphics[width=\linewidth]{result/bilder/Tc/cv-Tc}
         \caption{}
     \end{subfigure}
-    \caption{a) }
+    \caption{a) Shows how $\chi$ behaves around $T_C$ b) Shows how $C_V$ develops near $T_C$.}
     \label{fig:tc-chi-cv}
 \end{figure}
 
@@ -552,7 +567,7 @@ Several simulations were made with different L. Below a selected few of these si
         \includegraphics[width=\linewidth]{result/bilder/Tc/m-Tc}
         \caption{}
     \end{subfigure}
-    \caption{a) }
+    \caption{a) Shows how E behaves around $T_C$ b) Shows how |M| develops near $T_C$.}
     \label{fig:tc-E-M}
 \end{figure}
 
