@@ -1,7 +1,10 @@
 The Ising model was developed by William Lenz and further worked on by Ernest Ising. In this project, the Ising model is used to describe a two dimensional magnetic system. The system is modeled as a spin matrix, were each spin has the value 1 or -1.
 \\
 \\
-These laws are not enough to solve the motion of the planets. From the laws one can derive differential equations for the motion, which are not trivial or even possible to solve analytically. This is where computational methods are useful. With the tools developed in computtational physics we can make a prediction to the motion of the planets in our solar system.\footnote{\href{http://www.uio.no/studier/emner/matnat/fys/FYS3150/h17/index.html}{\color{blue}{Semester page for FYS3150 - Autumn 2017}}.} And because of our assignment we kind of have to do this to pass the course.\cite{project4}
-
-
-
+The 2x2 matrix was studied analytically to confirm that the program produces the right results. For a system the number of microstates are given by 2 to the power of number of spins. For a bigger system this quickly becomes a very big number and makes it very hard to calculate the partition function.\footnote{Impossible within our lifetime to calculate.} The partition function is used for calculating the different quantities of the system. Because the partition function is so hard to calculate for bigger systems and essential for calculating the quantities of the system, an analytical solution for a 20x20 or higher is not suitable to obtain.
+\\
+\\
+The Metropolis algorithm is implemented with the Ising model to simulate the systems. This is done for many different sizes. 2x2 to test the program, 20x20 to understand the stability and convergence of the program and finally for various finite lattices to study the transition phase. 
+\\
+\\
+The program correctly simulate the 2x2 and gives a good understanding for the convergence and stability. The distribution for 20x20 is quite interesting and shows a good correlation with a Boltzmann distribution. Lars Onsager analytically predicted the phase transition to 2.269 and almost the same result was obtained in this report.
