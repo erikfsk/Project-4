@@ -98,8 +98,6 @@ void MetropolisSampling(int NSpins, int MCcycles, double Temperature, vec &Expec
       WriteResultstoFile(NSpins, MCcycles, Temperature, values);  
       for(int x =0; x < NSpins; x++) {
         for (int y= 0; y < NSpins; y++){
-
-
           int ix = (int) (RandomNumberGenerator(gen)*(double)NSpins);
           int iy = (int) (RandomNumberGenerator(gen)*(double)NSpins);
           int deltaE =  2*SpinMatrix(ix,iy)*
